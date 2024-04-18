@@ -16,10 +16,10 @@ $config = ORMSetup::createAnnotationMetadataConfiguration($paths,$isDevMode);
 
 // configuring the database connection
 $connection = DriverManager::getConnection([
-    'dbname' => 'bdd_BikeStore',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost',
+    'dbname' => 'plantiv221_0',
+    'user' => 'plantiv221',
+    'password' => 'bushooVe9eitaenu',
+    'host' => 'mysql-etu.unicaen.fr:3306',
     'driver' => 'pdo_mysql',
 ], $config);
 

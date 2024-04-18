@@ -10,12 +10,14 @@ use Entity\Stores;
 use JsonSerializable;
 
 /**
+ * Represents a stock entity.
+ *
  * @ORM\Entity
  * @ORM\Table{name="stocks"}
  */
 class Stocks implements JsonSerializable{
 
-    /** @var int */
+    /** @var int The unique identifier for the stock. */
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -35,6 +37,7 @@ class Stocks implements JsonSerializable{
      */
     private ?Products $product;
 
+    /** @var int|null The quantity of the product in stock. */
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -43,7 +46,7 @@ class Stocks implements JsonSerializable{
     /**
      * Get stock_id.
      * 
-     * @return int
+     * @return int The stock ID.
      */
     public function getStock_id(){
         return $this->stock_id;
@@ -52,7 +55,7 @@ class Stocks implements JsonSerializable{
     /**
      * Set stock_id.
      * 
-     * @param int $stock_id
+     * @param int $stock_id The stock ID to set.
      * 
      * @return Stocks
      */
@@ -64,7 +67,7 @@ class Stocks implements JsonSerializable{
     /**
      * Get store.
      * 
-     * @return Stores
+     * @return Stores The store associated with the stock.
      */
     public function getStore(){
         return $this->store;
@@ -73,7 +76,7 @@ class Stocks implements JsonSerializable{
     /**
      * Set store.
      * 
-     * @param Stores $store
+     * @param Stores $store The store to set for the stock.
      * 
      * @return Stocks
      */
@@ -85,7 +88,7 @@ class Stocks implements JsonSerializable{
     /**
      * Get product.
      * 
-     * @return Products
+     * @return Products The product associated with the stock.
      */
     public function getProduct(){
         return $this->product;
@@ -94,7 +97,7 @@ class Stocks implements JsonSerializable{
     /**
      * Set product.
      * 
-     * @param Products $product
+     * @param Products $product The product to set for the stock.
      * 
      * @return Stocks
      */
@@ -106,7 +109,7 @@ class Stocks implements JsonSerializable{
     /**
      * Get quantity.
      * 
-     * @return int
+     * @return int|null The quantity of the product in stock.
      */
     public function getQuantity(){
         return $this->quantity;
@@ -115,7 +118,7 @@ class Stocks implements JsonSerializable{
     /**
      * Set quantity.
      * 
-     * @param int $quantity
+     * @param int|null $quantity The quantity to set for the product in stock.
      * 
      * @return Stocks
      */
@@ -124,11 +127,21 @@ class Stocks implements JsonSerializable{
         return $this;
     }
 
+    /**
+     * Returns the string representation of the stock.
+     * 
+     * @return string A string representation of the stock.
+     */
     public function __toString(){
         return "Stock ID: " . $this->stock_id;
     }
 
-    public function jsonSerialize(): mixed {
+    /**
+     * Specify data which should be serialized to JSON.
+     * 
+     * @return array Serialized data.
+     */
+    public function jsonSerialize() {
         return [
             'stock_id' => $this->stock_id,
             'store' => $this->store,

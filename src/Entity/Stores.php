@@ -10,12 +10,14 @@ use Entity\Employees;
 use JsonSerializable;
 
 /**
+ * Represents a store entity.
+ *
  * @ORM\Entity
  * @ORM\Table{name="stores"}
  */
 class Stores implements JsonSerializable{
 
-    /** @var int */
+    /** @var int The unique identifier for the store. */
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,37 +25,43 @@ class Stores implements JsonSerializable{
      */
     private int $store_id;
 
-    /** @var string */
+    /** @var string The name of the store. */
     /**
      * @ORM\Column(type="string")
      */
     private string $store_name;
 
+    /** @var string|null The phone number of the store. */
     /**
      * @ORM\Column(type="string", length=25, nullable=true)
      */
     private ?string $phone;
 
+    /** @var string|null The email address of the store. */
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private ?string $email;
 
+    /** @var string|null The street address of the store. */
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private ?string $street;
 
+    /** @var string|null The city of the store. */
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private ?string $city;
 
+    /** @var string|null The state of the store. */
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private ?string $state;
 
+    /** @var string|null The ZIP code of the store. */
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
@@ -65,6 +73,7 @@ class Stores implements JsonSerializable{
      */
     private Collection $stocksStore;
 
+    /** @var \Doctrine\Common\Collections\Collection */
     /**
      * @ORM\OneToMany(targetEntity=Employees::class, mappedBy="store")
      */
@@ -73,7 +82,7 @@ class Stores implements JsonSerializable{
     /**
      * Get store_id
      * 
-     * @return int
+     * @return int The store ID.
      */
     public function getStore_id(){
         return $this->store_id;
@@ -82,7 +91,7 @@ class Stores implements JsonSerializable{
     /**
      * Set store_id.
      * 
-     * @param int $store_id
+     * @param int $store_id The store ID to set.
      * 
      * @return Stores
      */
@@ -94,7 +103,7 @@ class Stores implements JsonSerializable{
     /**
      * Get store_name.
      * 
-     * @return string
+     * @return string The name of the store.
      */
     public function getStore_name(){
         return $this->store_name;
@@ -103,7 +112,7 @@ class Stores implements JsonSerializable{
     /**
      * Set store_name.
      * 
-     * @param string $store_name
+     * @param string $store_name The name of the store to set.
      * 
      * @return Stores
      */
@@ -115,7 +124,7 @@ class Stores implements JsonSerializable{
     /**
      * Get phone.
      * 
-     * @return string
+     * @return string|null The phone number of the store.
      */
     public function getPhone(){
         return $this->phone;
@@ -124,7 +133,7 @@ class Stores implements JsonSerializable{
     /**
      * Set phone.
      * 
-     * @param string $phone
+     * @param string|null $phone The phone number of the store to set.
      * 
      * @return Stores
      */
@@ -136,7 +145,7 @@ class Stores implements JsonSerializable{
     /**
      * Get email.
      * 
-     * @return string
+     * @return string|null The email address of the store.
      */
     public function getEmail(){
         return $this->email;
@@ -145,7 +154,7 @@ class Stores implements JsonSerializable{
     /**
      * Set email.
      * 
-     * @param string $email
+     * @param string|null $email The email address of the store to set.
      * 
      * @return Stores
      */
@@ -157,7 +166,7 @@ class Stores implements JsonSerializable{
     /**
      * Get street.
      * 
-     * @return string
+     * @return string|null The street address of the store.
      */
     public function getStreet(){
         return $this->street;
@@ -166,7 +175,7 @@ class Stores implements JsonSerializable{
     /**
      * Set street.
      * 
-     * @param string $street
+     * @param string|null $street The street address of the store to set.
      * 
      * @return Stores
      */
@@ -178,7 +187,7 @@ class Stores implements JsonSerializable{
     /**
      * Get city.
      * 
-     * @return string
+     * @return string|null The city of the store.
      */
     public function getCity(){
         return $this->city;
@@ -187,7 +196,7 @@ class Stores implements JsonSerializable{
     /**
      * Set city.
      * 
-     * @param string $city
+     * @param string|null $city The city of the store to set.
      * 
      * @return Stores
      */
@@ -199,7 +208,7 @@ class Stores implements JsonSerializable{
     /**
      * Get state.
      * 
-     * @return string
+     * @return string|null The state of the store.
      */
     public function getState(){
         return $this->state;
@@ -208,7 +217,7 @@ class Stores implements JsonSerializable{
     /**
      * Set state.
      * 
-     * @param string $state
+     * @param string|null $state The state of the store to set.
      * 
      * @return Stores
      */
@@ -220,7 +229,7 @@ class Stores implements JsonSerializable{
     /**
      * Get zip_code.
      * 
-     * @return string
+     * @return string|null The ZIP code of the store.
      */
     public function getZip_code(){
         return $this->zip_code;
@@ -229,7 +238,7 @@ class Stores implements JsonSerializable{
     /**
      * Set zip_code.
      * 
-     * @param string $zip_code
+     * @param string|null $zip_code The ZIP code of the store to set.
      * 
      * @return Stores
      */
@@ -238,11 +247,21 @@ class Stores implements JsonSerializable{
         return $this;
     }
 
+    /**
+     * Returns the string representation of the store.
+     * 
+     * @return string The name of the store.
+     */
     public function __toString(){
         return $this->store_name;
     }
 
-    public function jsonSerialize(): mixed {
+    /**
+     * Specify data which should be serialized to JSON.
+     * 
+     * @return array Serialized data.
+     */
+    public function jsonSerialize() {
         return [
             'store_id' => $this->store_id,
             'store_name' => $this->store_name,

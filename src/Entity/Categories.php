@@ -9,12 +9,14 @@ use Entity\Products;
 use JsonSerializable;
 
 /**
+ * Represents a category entity.
+ *
  * @ORM\Entity
  * @ORM\Table{name="categories"}
  */
 class Categories implements JsonSerializable{
 
-    /** @var int */
+    /** @var int The unique identifier for the category. */
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -22,13 +24,13 @@ class Categories implements JsonSerializable{
      */
     private int $category_id;
 
-    /** @var string */
+    /** @var string The name of the category. */
     /**
      * @ORM\Column(type="string")
      */
     private string $category_name;
 
-    /** @var \Doctrine\Common\Collections\Collection */
+    /** @var \Doctrine\Common\Collections\Collection Collection of products associated with this category. */
     /**
      * @ORM\OneToMany(targetEntity=Products::class, mappedBy="category")
      */
@@ -37,7 +39,7 @@ class Categories implements JsonSerializable{
     /**
      * Get category_id.
      * 
-     * @return int
+     * @return int The category ID.
      */
     public function getCategory_id(){
         return $this->category_id;
@@ -46,7 +48,7 @@ class Categories implements JsonSerializable{
     /**
      * Set category_id.
      * 
-     * @param int $category_id
+     * @param int $category_id The category ID to set.
      * 
      * @return Categories
      */
@@ -58,7 +60,7 @@ class Categories implements JsonSerializable{
     /**
      * Get category_name.
      * 
-     * @return string
+     * @return string The category name.
      */
     public function getCategory_name(){
         return $this->category_name;
@@ -67,7 +69,7 @@ class Categories implements JsonSerializable{
     /**
      * Set category_name.
      * 
-     * @param string $category_name
+     * @param string $category_name The category name to set.
      * 
      * @return Categories
      */
@@ -76,6 +78,11 @@ class Categories implements JsonSerializable{
         return $this;
     }
 
+    /**
+     * Returns the string representation of the category.
+     * 
+     * @return string The category name.
+     */
     public function __toString(){
         return $this->category_name;
     }
@@ -83,17 +90,18 @@ class Categories implements JsonSerializable{
     /**
      * Get productsCategory.
      * 
-     * @return Collection|Products[]
+     * @return Collection|Products[] Collection of products associated with this category.
      */
     public function getProductsCategory(){
         return $this->productsCategory;
     }
 
     /**
-     *
-     * @return array|mixed
+     * Specify data which should be serialized to JSON.
+     * 
+     * @return array Serialized data.
      */
-    public function jsonSerialize(): mixed {
+    public function jsonSerialize() {
         return [
             'category_id' => $this->category_id,
             'category_name' => $this->category_name,

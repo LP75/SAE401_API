@@ -10,12 +10,14 @@ use Entity\Categories;
 use JsonSerializable;
 
 /**
+ * Represents a product entity.
+ *
  * @ORM\Entity(repositoryClass="Repository\ProductsRepository")
  * @ORM\Table{name="products"}
  */
 class Products implements JsonSerializable{
 
-    /** @var int */
+    /** @var int The unique identifier for the product. */
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -45,7 +47,7 @@ class Products implements JsonSerializable{
      */
     private string $list_price;
 
-    /** @var string */
+    /** @var string The name of the product. */
     /**
      * @ORM\Column(type="string")
      */
@@ -60,7 +62,7 @@ class Products implements JsonSerializable{
     /**
      * Get product_id.
      * 
-     * @return int
+     * @return int The product ID.
      */
     public function getProduct_id(){
         return $this->product_id;
@@ -69,7 +71,7 @@ class Products implements JsonSerializable{
     /**
      * Set product_id.
      * 
-     * @param int $product_id
+     * @param int $product_id The product ID to set.
      * 
      * @return Products
      */
@@ -81,7 +83,7 @@ class Products implements JsonSerializable{
     /**
      * Get brand.
      * 
-     * @return Brands
+     * @return Brands The brand associated with the product.
      */
     public function getBrand(){
         return $this->brand;
@@ -90,7 +92,7 @@ class Products implements JsonSerializable{
     /**
      * Set brand.
      * 
-     * @param Brands $brand
+     * @param Brands $brand The brand to set for the product.
      * 
      * @return Products
      */
@@ -102,7 +104,7 @@ class Products implements JsonSerializable{
     /**
      * Get category.
      * 
-     * @return Categories
+     * @return Categories The category associated with the product.
      */
     public function getCategory(){
         return $this->category;
@@ -111,7 +113,7 @@ class Products implements JsonSerializable{
     /**
      * Set category.
      * 
-     * @param Categories $category
+     * @param Categories $category The category to set for the product.
      * 
      * @return Products
      */
@@ -123,7 +125,7 @@ class Products implements JsonSerializable{
     /**
      * Get model_year.
      * 
-     * @return int
+     * @return int The model year of the product.
      */
     public function getModel_year(){
         return $this->model_year;
@@ -132,7 +134,7 @@ class Products implements JsonSerializable{
     /**
      * Set model_year.
      * 
-     * @param int $model_year
+     * @param int $model_year The model year to set for the product.
      * 
      * @return Products
      */
@@ -144,7 +146,7 @@ class Products implements JsonSerializable{
     /**
      * Get list_price.
      * 
-     * @return string
+     * @return string The list price of the product.
      */
     public function getList_price(){
         return $this->list_price;
@@ -153,7 +155,7 @@ class Products implements JsonSerializable{
     /**
      * Set list_price.
      * 
-     * @param int $list_price
+     * @param int $list_price The list price to set for the product.
      * 
      * @return Products
      */
@@ -165,7 +167,7 @@ class Products implements JsonSerializable{
     /**
      * Get product_name.
      * 
-     * @return string
+     * @return string The product name.
      */
     public function getProduct_name(){
         return $this->product_name;
@@ -174,7 +176,7 @@ class Products implements JsonSerializable{
     /**
      * Set product_name.
      * 
-     * @param string $product_name
+     * @param string $product_name The product name to set.
      * 
      * @return Products
      */
@@ -183,16 +185,29 @@ class Products implements JsonSerializable{
         return $this;
     }
 
+    /**
+     * Constructor.
+     */
     public function __construct() {
         $this->brand = new Brands();
         $this->category = new Categories();
     }
 
+    /**
+     * Returns the string representation of the product.
+     * 
+     * @return string The product name.
+     */
     public function __toString(){
         return $this->product_name;
     }
 
-    public function jsonSerialize(): mixed {
+    /**
+     * Specify data which should be serialized to JSON.
+     * 
+     * @return array Serialized data.
+     */
+    public function jsonSerialize() {
         return [
             'product_id' => $this->product_id,
             'brand' => $this->brand,
