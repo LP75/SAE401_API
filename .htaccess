@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^products/brand/([^/]+)$ index.php?table=Products&brandName=$1 [L,B,QSA]
+RewriteRule ^products/category/([^/]+)$ index.php?table=Products&catName=$1 [L,B,QSA]
+RewriteRule ^products/store/([^/]+)$ index.php?table=Products&storeName=$1 [L,B,QSA]
+RewriteRule ^products/year/([^/]+)$ index.php?table=Products&model_year=$1 [L,B,QSA]
+RewriteRule ^employees/store/([^/]+)$ index.php?table=Employees&storeName=$1 [L,B,QSA]
+RewriteRule ^([^/]+)/?$ index.php?table=$1 [L,QSA]
+RewriteRule ^([^/]+)/(\d+)$ index.php?table=$1&id=$2 [L,QSA]
